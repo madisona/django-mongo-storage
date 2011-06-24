@@ -21,6 +21,8 @@ import os
 
 from django.db import models
 
+__all__ = ('MongoFileField',)
+
 class MongoFieldFile(models.fields.files.FieldFile):
 
     @property

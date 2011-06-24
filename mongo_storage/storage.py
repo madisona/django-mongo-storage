@@ -7,6 +7,8 @@ from bson.objectid import ObjectId
 from gridfs import GridFS
 from pymongo import Connection
 
+__all__ = ('GridFSStorage',)
+
 class GridFSStorage(Storage):
     """
     A storage adapter to use MongoDB's GridFS file storage
