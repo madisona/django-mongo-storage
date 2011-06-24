@@ -1,0 +1,5 @@
+.idea/* 
+sample_db
+
+*.pyc
+*.pyo
