@@ -3,11 +3,14 @@ from django import template
 from django.core.exceptions import PermissionDenied
 from django.db import router
 from django.shortcuts import render_to_response
+from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _
 
 from django.contrib.admin.util import get_deleted_objects, model_ngettext
 from django.contrib.admin import helpers
+
+__all__ = ('DeleteActionMixin', 'MongoFileAdminMixin')
 
 class DeleteActionMixin(object):
     """
@@ -118,4 +121,4 @@ class MongoFileAdminMixin(object):
         return obj.content.file_name
 
     def file_size(self, obj):
-        return obj.content.size
+        return filesizeformat(obj.content.size)
