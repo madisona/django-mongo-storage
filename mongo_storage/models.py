@@ -3,6 +3,8 @@ from django.db import models
 
 from mongo_storage.fields import MongoFileField
 
+__all__ = ('MongoDeleteFileMixin', 'MongoFileMixin')
+
 class MongoDeleteFileMixin(models.Model):
     """
     Will delete the file from the database when the model
@@ -26,7 +28,6 @@ class MongoDeleteFileMixin(models.Model):
     def delete(self, using=None):
         self.content.delete()
         super(MongoDeleteFileMixin, self).delete(using=using)
-
 
 class MongoFileMixin(models.Model):
     content = MongoFileField(upload_to="files")
