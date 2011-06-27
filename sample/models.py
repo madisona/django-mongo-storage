@@ -1,10 +1,10 @@
 from django.db import models
 
-from mongo_storage.models import MongoFileMixin, MongoDeleteFileMixin
+from mongo_storage.models import MongoFileModel, MongoDeleteFileModel
 
 
 
-class SampleModel(MongoFileMixin):
+class SampleModel(MongoFileModel):
     """
     Sample model using MongoDB as a storage backend.
     """
@@ -15,7 +15,7 @@ class SampleModel(MongoFileMixin):
         return ('sample:download_file', (self.content.name,))
 
 
-class SampleDeleteModel(MongoDeleteFileMixin):
+class SampleDeleteModel(MongoDeleteFileModel):
     """
     Sample model that will delete the uploaded file
     when the model gets deleted.

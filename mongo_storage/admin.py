@@ -18,7 +18,7 @@ class DeleteActionMixin(object):
     delete on the model queryset, which bypasses the model's delete method.
     (https://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/)
 
-    If you're using the MongoDeleteFileMixin in your model, you won't
+    If you're using the MongoDeleteFileModel in your model, you won't
     be able to delete items in bulk using the 'delete selected...' without
     adding this mixin to your admin. It will delete the django model, but
     leave the file still in django.

@@ -4,8 +4,8 @@ A helper app for using MongoDB's GridFS as a storage backend for django.
 mongo_storage contents include:
 
 models.py
-  - MongoFileMixin: a model mixin creating a MongoFileField called content
-  - MongoDeleteFileMixin: a model mixin that will delete the underlying
+  - MongoFileModel: a model mixin creating a MongoFileField called content
+  - MongoDeleteFileModel: a model mixin that will delete the underlying
     file when the model is deleted
 
 fields.py

@@ -3,12 +3,15 @@ from django.db import models
 
 from mongo_storage.fields import MongoFileField
 
-__all__ = ('MongoDeleteFileMixin', 'MongoFileMixin')
+__all__ = (
+    'DeleteFileMixin',
+    'MongoDeleteFileModel', 'MongoFileModel',
+)
 
-class MongoDeleteFileMixin(models.Model):
+class DeleteFileMixin(object):
     """
     Will delete the file from the database when the model
-    is deleted.
+    is deleted. The file field MUST be named 'content'.
 
     This could potentially lead to a couple issues, so make sure
     you're comfortable with them before actually using this.
@@ -20,18 +23,18 @@ class MongoDeleteFileMixin(models.Model):
       cause the not-deleted file to lose the file it was pointing to.
     """
 
-    content = MongoFileField(upload_to="files")
-
-    class Meta(object):
-        abstract = True
-
     def delete(self, using=None):
         self.content.delete()
-        super(MongoDeleteFileMixin, self).delete(using=using)
+        super(DeleteFileMixin, self).delete(using=using)
 
-class MongoFileMixin(models.Model):
+
+class MongoFileModel(models.Model):
     content = MongoFileField(upload_to="files")
 
     class Meta(object):
         abstract = True
-    
+
+class MongoDeleteFileModel(DeleteFileMixin, MongoFileModel):
+
+    class Meta(object):
+        abstract = True
